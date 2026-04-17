@@ -1,10 +1,10 @@
-# 🛡️ Credit Card Fraud Detection — Databricks ML Pipeline
+# Credit Card Fraud Detection — Databricks ML Pipeline
 
 A full end-to-end machine learning pipeline built on Databricks for detecting fraudulent credit card transactions. The project follows the **Medallion Architecture** (Bronze → Silver → Gold) for data engineering, and uses a **Gradient Boosted Trees (GBT)** classifier tracked via **MLflow** for model training and evaluation.
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 ├── 01_Bronze_Ingestion.py          # Raw data ingestion from CSV to Delta table
@@ -16,7 +16,7 @@ A full end-to-end machine learning pipeline built on Databricks for detecting fr
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 This project uses the **Lakehouse Medallion Architecture**, where data flows through three progressively refined layers before reaching model training.
 
@@ -26,9 +26,9 @@ Raw CSV  →  Bronze (Delta)  →  Silver (Delta)  →  Gold (Delta)  →  ML Mo
 
 ---
 
-## 📓 Notebook Breakdown
+## Notebook Breakdown
 
-### 1️⃣ Bronze — Data Ingestion (`01_Bronze_Ingestion.py`)
+### 1️ Bronze — Data Ingestion (`01_Bronze_Ingestion.py`)
 
 This is the entry point of the pipeline. It reads the raw credit card transaction data from a CSV file stored in a Databricks Volume and saves it as a Delta table without any modifications.
 
@@ -38,7 +38,7 @@ This is the entry point of the pipeline. It reads the raw credit card transactio
 
 ---
 
-### 2️⃣ Silver — Transformation & EDA (`02_Silver_Transformation.py`)
+### 2 Silver — Transformation & EDA (`02_Silver_Transformation.py`)
 
 This notebook is where the heavy lifting of data cleaning and exploratory analysis happens. Key steps include:
 
@@ -55,11 +55,11 @@ This notebook is where the heavy lifting of data cleaning and exploratory analys
   - Overlapping histogram of Fraud vs. Legitimate log-amounts
 - **Output Table:** `fraud_silver`
 
-> 💡 Key insight from EDA: The dataset is highly imbalanced, most transactions are low-value, and log-transformation of `Amount` significantly reduces skew — making it more suitable for linear models.
+>  Key insight from EDA: The dataset is highly imbalanced, most transactions are low-value, and log-transformation of `Amount` significantly reduces skew — making it more suitable for linear models.
 
 ---
 
-### 3️⃣ Gold — Feature Engineering (`03_Gold_Feature_Engineering.py`)
+### 3️ Gold — Feature Engineering (`03_Gold_Feature_Engineering.py`)
 
 This layer prepares the data in a format ready for ML training.
 
@@ -69,7 +69,7 @@ This layer prepares the data in a format ready for ML training.
 
 ---
 
-### 4️⃣ Model Training (`04_Model_Training.py`)
+### 4️ Model Training (`04_Model_Training.py`)
 
 The final modeling notebook trains a **Gradient Boosted Trees (GBT)** classifier and logs everything to MLflow.
 
@@ -85,7 +85,7 @@ The final modeling notebook trains a **Gradient Boosted Trees (GBT)** classifier
 
 ---
 
-### 📊 Report (`report.py`)
+### 4 Report (`report.py`)
 
 A summary notebook documenting the final model selection rationale and estimated business impact.
 
@@ -95,7 +95,7 @@ A summary notebook documenting the final model selection rationale and estimated
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 | Component | Tool |
 |-----------|------|
@@ -109,7 +109,7 @@ A summary notebook documenting the final model selection rationale and estimated
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
 1. Upload `creditcard.csv` to the Databricks Volume at:
    `/Volumes/workspace/default/fraud_volume/creditcard.csv`
@@ -126,7 +126,7 @@ A summary notebook documenting the final model selection rationale and estimated
 
 ---
 
-## 📈 Model Performance
+##  Model Performance
 
 | Metric | Description |
 |--------|-------------|
@@ -139,7 +139,7 @@ A summary notebook documenting the final model selection rationale and estimated
 
 ---
 
-## 📝 Notes
+##  Notes
 
 - The dataset is **highly imbalanced** — class weights are used during training to prevent the model from simply predicting "legitimate" for every transaction.
 - Log-transformation of the `Amount` feature is applied during EDA to understand its distribution, though the actual transformation is handled at the feature engineering stage.
@@ -147,12 +147,12 @@ A summary notebook documenting the final model selection rationale and estimated
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change or improve.
 
 ---
 
-## 📄 License
+##  License
 
 This project is intended for educational and research purposes.
